@@ -28,6 +28,7 @@ Foi construíndo um Banco de Dados PostgreSQL chamado `aplicacao_final` contendo
     - descricao
     - valor
     - data
+    - tipo
     - usuario_id
 
 **Dentro dos arquivos do projeto se encontra o Schema para construção do Banco de Dados**

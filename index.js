@@ -1,27 +1,12 @@
-const PORT = 3000;
 const express = require('express');
-const db = require('./src/db')
-const bodyParser = require('body-parser');
-
+const { rotas } = require('./src/routers/rotas');
 const app = express();
+const PORT = 3000;
 
-app.use(express.urlencoded({extended: true}))
 app.use(express.json());
-app.use(express.static(__dirname + '/public'));
 
-app.use(session({
-    secret: 'secret-token',
-    name: 'sessionId',  
-    resave: false,
-    saveUninitialized: false
-}))
-
-db.sync(() => console.log(`Banco de dados conectado`));
-
-app.get('/all', (req,res) => {});
-
-app.post('/new', (req,res) =>{});
+app.use(rotas);
 
 app.listen(PORT, () => {
-    console.log("Server running on port", PORT);
-})
+    console.log(`Servidor express rodando em http://localhost:${PORT}`);
+});
