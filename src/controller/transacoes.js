@@ -63,7 +63,7 @@ const cadastrarTransacao = async (req, res) => {
 
   const query = `insert into transacoes (tipo, descricao, valor, data, id_usuario) 
   values ($1,$2,$3,$4,$5)
-  returning * `; //só falta fazer o join para trazer a descricao da categoria
+  returning * `;
 
   try{
 

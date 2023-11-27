@@ -19,7 +19,7 @@ const listarProdutos = async (req, res) => {
 const cadastrarProduto = async (req, res) => {
   const {descricao, nome } = req.body;
 
-  const query = `insert into produtos (nome, descricao, usuario_id) 
+  const query = `insert into produtos (nome, descricao, id_usuario) 
   values ($1,$2,$3)
   returning * `;
 
@@ -44,7 +44,7 @@ const atualizarProduto = async (req, res) => {
   try {
     
     const { rowCount } = await pool.query(
-      "select * from produtos where id = $1 and usuario_id = $2",
+      "select * from produtos where id = $1 and id_usuario = $2",
       [id, req.usuario]
     );
 
@@ -73,11 +73,11 @@ const excluirProduto = async (req, res) => {
   try{
     const localizarProduto = await pool.query(`select id from produtos where id = $1 and id_usuario = $2`,[id, req.usuario])
 
-    if(!localizarTransacao){
+    if(!localizarProduto){
       res.status(400).json({mensagem: `Transação não encontrada.`})
     }
 
-    const query = `delete from produto where id = $1 and usuario_id = $2`;
+    const query = `delete from produtos where id = $1 and id_usuario = $2`;
 
     await pool.query(query, [id, req.usuario]);
     

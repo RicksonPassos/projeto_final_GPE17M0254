@@ -21,7 +21,6 @@ create table transacoes(
     valor integer,
     data timestamp,
     tipo text,
-    id_usuario serial references usuarios(id);
-    id_produto serial references produtos(id)
-)
+    id_usuario serial references usuarios(id)
+);
 
